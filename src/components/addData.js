@@ -63,6 +63,7 @@ class AddData extends Component{
         //const domainNames = ["AUV", "SAT"];
         //console.log(this.props)
         //console.log(Object.keys(applicantData));
+        if(!this.props.auth.uid) return <Redirect to='/signin'/>
         return (
             <>
             <ESNavbar />
@@ -110,6 +111,7 @@ const mapStateToProps = (state) => {
     //console.log('State')
     //console.log(state.firebase.data.applicantData)
     return {
+        auth: state.firebase.auth,
         applicantData: state.firebase.data.applicantData,
     }
 }

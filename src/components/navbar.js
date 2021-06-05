@@ -9,7 +9,7 @@ import {Nav} from "react-bootstrap";
 import '../styles/header.css'
 import {NavLink, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-//import {signOut} from '../actions/auth_actions'
+import {signOut} from '../actions/auth_actions'
 
 const ESNavbar = (props) => {
     return (
@@ -59,11 +59,19 @@ const ESNavbar = (props) => {
                 <NavLink to='/addData' className='nav-bar-items'>Add Applicant Data</NavLink>
                 </Nav.Link>
             </li>
-
+            <li>
+                <Nav.Link onClick={props.signOut} className="nav-bar-items" style={{cursor: 'pointer'}}>Sign Out
+                </Nav.Link>
+            </li>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
     );
 }
+const mapDispatchToProps = (dispatch) => {
+  return {
+      signOut: () => dispatch(signOut())
+  }
+}
 
-export default ESNavbar;
+export default connect(null, mapDispatchToProps)(ESNavbar);

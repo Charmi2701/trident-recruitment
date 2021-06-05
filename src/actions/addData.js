@@ -10,7 +10,7 @@ export const addData = (newData) => {
             status: false,
             ongoing: false
         }
-        console.log(newData);
+        //console.log(newData);
         database.ref("applicantData/"+newData.domain+"/"+newData.applicantID).set(data).then(() => {
             //console.log('UPLOADED DATA')
             dispatch({type: 'UPLOAD_DATA_SET', newData});

@@ -2,6 +2,7 @@ import React from 'react'
 import { Table } from 'react-bootstrap'
 import { connect } from 'react-redux';
 import { firebaseConnect } from 'react-redux-firebase';
+import { Redirect } from 'react-router-dom';
 import { compose } from 'redux';
 import DisplayTable from './displayTable';
 import ESNavbar from './navbar';
@@ -9,7 +10,8 @@ import ESNavbar from './navbar';
 function DisplayStatus(props) {
     const applicantData = props.applicantData;
     const domainNames = applicantData ? Object.keys(applicantData) : null;
-    //console.log(domainNames);
+    //console.log(props);
+    if(!props.auth.uid) return <Redirect to='/signin'/>
     return (
         <>
         <ESNavbar />
@@ -24,8 +26,9 @@ function DisplayStatus(props) {
 
 const mapStateToProps = (state) => {
     //console.log('State')
-    //console.log(state.firebase.data.applicantData)
+    //console.log(state)
     return {
+        auth: state.firebase.auth,
         applicantData: state.firebase.data.applicantData,
     }
 }
